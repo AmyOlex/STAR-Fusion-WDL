@@ -1,5 +1,7 @@
 # STAR-Fusion Terra WDL (with Junction File Input)
 
+[![Dockstore](https://img.shields.io/badge/Dockstore-STAR--Fusion--WDL--hg38v22-blue)](https://dockstore.org)
+
 A modified version of the [STAR-Fusion Terra WDL pipeline](https://github.com/STAR-Fusion/STAR-Fusion/blob/Terra/WDL/star_fusion_hg38_wf.wdl) that adds support for re-running fusion analysis from an existing `Chimeric.out.junction` file, bypassing the need to repeat STAR alignment.
 
 ## Overview
@@ -74,6 +76,11 @@ Provide:
 ## AI Disclaimer
 
 Portions of this pipeline, including the modified WDL code and documentation, were developed with the assistance of [Claude Sonnet 4.6](https://www.anthropic.com) (Anthropic). All AI-generated code has been reviewed for correctness, but users are encouraged to validate pipeline behavior in their own environment before use in production analyses.
+
+## Authors
+
+- **Brian Haas** (bhaas@broadinstitute.org) — Original STAR-Fusion pipeline
+- **Amy Olex** (alolex@vcu.edu) — Junction file input modifications
 
 ## Credits
 
