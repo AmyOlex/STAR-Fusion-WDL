@@ -5,6 +5,4 @@ workflows:
      primaryDescriptorPath: /star_fusion_hg38_wf.wdl
      authors:
          - name: Brian Haas
-           email: bhaas@broadinstitute.org
-	 - name: Amy Olex
-	   email: alolex@vcu.edu
+	 	 - name: Amy Olex
