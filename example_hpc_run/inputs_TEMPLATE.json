@@ -1,0 +1,10 @@
+{
+  "star_fusion_hg38_wf.sample_id": "YOUR_SAMPLE_ID",
+  "star_fusion_hg38_wf.left_fq": "/path/to/your/sample_R1.fq.gz",
+  "star_fusion_hg38_wf.right_fq": "/path/to/your/sample_R2.fq.gz",
+  "star_fusion_hg38_wf.local_genome_dir": "/path/to/GRCh38_gencode_v22_CTAT_lib_Mar012021.plug-n-play/ctat_genome_lib_build_dir",
+  "star_fusion_hg38_wf.fusion_inspector": "validate",
+  "star_fusion_hg38_wf.examine_coding_effect": true,
+  "star_fusion_hg38_wf.memory": "100G",
+  "star_fusion_hg38_wf.docker": "trinityctat/starfusion:latest"
+}
