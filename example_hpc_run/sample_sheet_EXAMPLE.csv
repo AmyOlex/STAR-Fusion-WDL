@@ -1,0 +1,4 @@
+sample_id,left_fq,right_fq
+VCU-PC-124_9017,/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-124_9017_R1.fq.gz,/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-124_9017_R2.fq.gz
+VCU-PC-125_9018,/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-125_9018_R1.fq.gz,/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-125_9018_R2.fq.gz
+VCU-PC-126_9019,/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-126_9019_R1.fq.gz,/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-126_9019_R2.fq.gz

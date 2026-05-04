@@ -1,0 +1,9 @@
+{
+  "star_fusion_hg38_batch_hpc_wf.local_genome_dir": "/path/to/ctat_genome_lib_build_dir",
+  "star_fusion_hg38_batch_hpc_wf.fusion_inspector": "validate",
+  "star_fusion_hg38_batch_hpc_wf.examine_coding_effect": true,
+  "star_fusion_hg38_batch_hpc_wf.memory": "100G",
+  "star_fusion_hg38_batch_hpc_wf.docker": "trinityctat/starfusion:latest",
+  "star_fusion_hg38_batch_hpc_wf.output_dir": "/path/to/output_directory",
+  "star_fusion_hg38_batch_hpc_wf.keep_bam_and_junction": false
+}

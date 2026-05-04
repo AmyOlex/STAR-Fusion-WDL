@@ -1,0 +1,24 @@
+{
+  "star_fusion_hg38_batch_hpc_wf.sample_ids": [
+    "VCU-PC-124_9017",
+    "VCU-PC-125_9018",
+    "VCU-PC-126_9019"
+  ],
+  "star_fusion_hg38_batch_hpc_wf.left_fqs": [
+    "/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-124_9017_R1.fq.gz",
+    "/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-125_9018_R1.fq.gz",
+    "/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-126_9019_R1.fq.gz"
+  ],
+  "star_fusion_hg38_batch_hpc_wf.right_fqs": [
+    "/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-124_9017_R2.fq.gz",
+    "/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-125_9018_R2.fq.gz",
+    "/lustre/home/harrell_lab/bulkRNASeq/raw/VCU-PC-126_9019_R2.fq.gz"
+  ],
+  "star_fusion_hg38_batch_hpc_wf.local_genome_dir": "/lustre/home/harrell_lab/refGenomes/ctat/GRCh38_gencode_v22_CTAT_lib_Mar012021.plug-n-play/ctat_genome_lib_build_dir",
+  "star_fusion_hg38_batch_hpc_wf.fusion_inspector": "validate",
+  "star_fusion_hg38_batch_hpc_wf.examine_coding_effect": true,
+  "star_fusion_hg38_batch_hpc_wf.memory": "100G",
+  "star_fusion_hg38_batch_hpc_wf.docker": "trinityctat/starfusion:latest",
+  "star_fusion_hg38_batch_hpc_wf.output_dir": "/lustre/home/harrell_lab/bulkRNASeq/results/starfusion_run_20260504",
+  "star_fusion_hg38_batch_hpc_wf.keep_bam_and_junction": false
+}
