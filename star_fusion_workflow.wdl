@@ -5,7 +5,8 @@ workflow star_fusion_workflow {
 
     String sample_id
 
-    File genome_plug_n_play_tar_gz
+    File? genome_plug_n_play_tar_gz
+    String? local_genome_dir
 
     # input data options - FASTQs
     File? left_fq
@@ -40,6 +41,7 @@ workflow star_fusion_workflow {
       fastq_pair_tar_gz            = fastq_pair_tar_gz,
       input_chimeric_junction      = input_chimeric_junction,
       genome                       = genome_plug_n_play_tar_gz,
+      local_genome                 = local_genome_dir,
       sample_id                    = sample_id,
       examine_coding_effect        = examine_coding_effect,
       coord_sort_bam               = coord_sort_bam,
@@ -87,7 +89,8 @@ task star_fusion {
 
     File? input_chimeric_junction
 
-    File genome
+    File? genome
+    String? local_genome
 
     String? fusion_inspector
     Boolean examine_coding_effect
@@ -168,22 +171,45 @@ task star_fusion {
     fi
 
     # -----------------------------------------------------------------------
-    # Unpack genome
+    # Identify genome input type and Run STAR-Fusion
     # -----------------------------------------------------------------------
-    mkdir -p genome_dir
-    tar xf ~{genome} -C genome_dir --strip-components 1
+    
+    if [[ -z "~{local_genome}" && -z "~{genome}" ]]; then
+      echo "Error, no reference genome input."
+      ls -ltr
+      exit 1
+    fi
 
-    # -----------------------------------------------------------------------
-    # Run STAR-Fusion
-    # -----------------------------------------------------------------------
-    /usr/local/src/STAR-Fusion/STAR-Fusion \
-      --genome_lib_dir `pwd`/genome_dir/ctat_genome_lib_build_dir \
-      ${read_params} \
-      --output_dir ~{sample_id} \
-      --CPU ~{cpu} \
-      ~{"--FusionInspector " + fusion_inspector} \
-      ~{true='--examine_coding_effect' false='' examine_coding_effect} \
-      ~{"--min_FFPM " + min_FFPM}
+
+    if [[ ! -z "~{local_genome}" ]]; then
+      
+      # --- Local Genome Dir Mode ---
+      # Run STAR-Fusion
+      # -----------------------------------------------------------------------
+      /usr/local/src/STAR-Fusion/STAR-Fusion \
+        --genome_lib_dir ~{local_genome} \
+        ${read_params} \
+        --output_dir ~{sample_id} \
+        --CPU ~{cpu} \
+        ~{"--FusionInspector " + fusion_inspector} \
+        ~{true='--examine_coding_effect' false='' examine_coding_effect} \
+       ~{"--min_FFPM " + min_FFPM}
+    else
+      mkdir -p genome_dir
+      tar xf ~{genome} -C genome_dir --strip-components 1
+
+      # -----------------------------------------------------------------------
+      # Run STAR-Fusion
+      # -----------------------------------------------------------------------
+      /usr/local/src/STAR-Fusion/STAR-Fusion \
+        --genome_lib_dir `pwd`/genome_dir/ctat_genome_lib_build_dir \
+        ${read_params} \
+        --output_dir ~{sample_id} \
+        --CPU ~{cpu} \
+        ~{"--FusionInspector " + fusion_inspector} \
+        ~{true='--examine_coding_effect' false='' examine_coding_effect} \
+        ~{"--min_FFPM " + min_FFPM}
+    fi
 
     # -----------------------------------------------------------------------
     # Sort / rename output BAM (only produced in FASTQ mode)
@@ -241,7 +267,7 @@ task star_fusion {
 
   runtime {
     preemptible: preemptible
-    disks: "local-disk " + ceil(input_disk + size(genome, "GB") * genome_disk_space_multiplier + extra_disk_space) + " " + (if use_ssd then "SSD" else "HDD")
+    disks: "local-disk " + ceil(input_disk + (if defined(genome) then size(genome, "GB") * genome_disk_space_multiplier else 0) + extra_disk_space) + " " + (if use_ssd then "SSD" else "HDD")
     docker: docker
     cpu: cpu
     memory: memory
