@@ -12,6 +12,10 @@ import "star_fusion_hg38_hpc_wf.wdl" as hpc
 # Input:  Arrays of sample_id, left_fq, right_fq (one entry per sample)
 #         Shared parameters (genome, fusion_inspector, memory, etc.)
 # Output: Gathered results in output_dir/<sample_id>/ per sample
+#
+# IMPORTANT: To allow successful samples to complete even if one fails,
+# add this to your cromwell.conf:
+#   workflow-options { workflow-failure-mode = "ContinueWhilePossible" }
 
 workflow star_fusion_hg38_batch_hpc_wf {
   input {
